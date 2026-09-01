@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jacob Villard - Game Designer Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QD800NSMP9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QD800NSMP9');
+    </script>
+</head>
+<body>
+<div class="container">
+    <!-- Introduction Section -->
+    <header class="intro">
+        <h2>Jacob Villard</h2>
+        <p class="description">Creative and passionate game designer
+            with an advanced scripting knowledge capable of rapid prototyping. I
+            truly enjoy making a great experience for end-users
+            and would consider it my speciality</p>
+        
+        <a href="https://linktr.ee/jacobvillard" target="_blank" class="btn-linktree">My Socials</a>
+    </header>
+
+    <!-- Section Buttons -->
+    <nav class="section-buttons">
+        <button onclick="setActiveSection(this, 'projects')">Projects</button>
+        <button onclick="setActiveSection(this, 'career')">Career</button>
+        <button onclick="setActiveSection(this, 'skills')">Skills</button>
+        <button onclick="setActiveSection(this, 'cli')">CLI</button>
+    </nav>
+
+    <!-- Content Sections -->
+    <section id="projects" class="content-section">
+        <div class="project">
+            <h2>Tetris Inventory</h2>
+            <p>This project was developed as part of my Games Engine Programming module, with my own personal goal of building a complex, Tetris-style inventory system in Unity. The system supports three item types including weapons, food, and potions that grant various affects the player. It features grid-based item placement and rotation. This project showcases my ability to prototype complex systems; initially, I experimented with an observable pattern but switched to a singleton approach for efficiency, which allowed me to complete the project within the strict timeframe.</p>
+
+            <!-- Embedded YouTube video -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/7PDsUQXIJmA?si=u25j_oyECkuHtgft"
+                        title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; 
+                    encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            
+
+            <ul class="project-links">
+                <li><a href="https://jacobvillard.wordpress.com/2024/06/18/building-a-tetris-style-inventory-system-in-unity-a-journey/" target="_blank">Blog Post on Development Process</a></li>
+                <li><a href="https://github.com/jacobvillard/InventorySystemV2" target="_blank">Source Code on GitHub</a></li>
+                <li><a href="https://darknerior.itch.io/inventorysystem" target="_blank">Download the project Itch</a></li>
+            </ul>
+        </div>
+        <div class="project">
+            <h2>FPS Demo</h2>
+            <p>This project was created as portfolio piece for my creative portfolio module. It showcases how I used my current workflow to create an FPS demo in only a couple of days. It includes a wide range variety of features including state machine, navmeshes, animation sound, events, a singleton pattern for the game manager, raycasting and complex interactions. I am also extremely happy with how this project turned out visually; a unique style that focuses in on the only mechanic of killing enemies creating a satisfying user experience.</p>
+
+            <!-- Embedded YouTube video -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/wgS8k-1sniw?si=Exu5Q4PemonmOVFg"
+                        title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; 
+                    encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+
+            <ul class="project-links">
+                <li><a href="https://jacobvillard.wordpress.com/2024/12/02/developing-an-fps-demo/" target="_blank">Blog Post on Development Process</a></li>
+                <li><a href="https://github.com/jacobstuartvillard/FPSdemo" target="_blank">Source Code on GitHub</a></li>
+                <li><a href="https://darknerior.itch.io/fps-demo" target="_blank">Download the project Itch</a></li>
+            </ul>
+        </div>
+        <div class="project">
+            <h2>A* Pathfinding</h2>
+            <p>A* Pathfinding Project was created for my advanced games engine programming project, and it includes namely hierarchical a* pathfinding that works need I say more? The module also required the creation of an editor tool so within the source you will find a unity editor level design tool. Whilst not one of the most graphically I am immensely proud with the output as I transformed the A* algorithm into a functioning pathfinding mechanic within my enemies and went even further to make it hierarchical to improve performance. It was perhaps the most complex system I have programmed yet and challenged my programming skills.</p>
+
+            <!-- Embedded YouTube video -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/fuYp80CRjw4?si=OnxO8KVnSOSWVTor"
+                        title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; 
+                    encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+
+            <ul class="project-links">
+                <li><a href="https://jacobvillard.wordpress.com/2024/06/17/an-a-pathfinding-project/" target="_blank">Blog Post on Development Process</a></li>
+                <li><a href="https://github.com/jacobvillard/Astar" target="_blank">Source Code on GitHub</a></li>
+                <li><a href="https://darknerior.itch.io/a-hide-and-seek" target="_blank">Download the project Itch</a></li>
+            </ul>
+        </div>
+        <div class="project">
+            <h2>Portfolio Website</h2>
+            <p>Absolutely meta writing about creating the portfolio in the portfolio, however this more than anything shows I am a very adept at adapting to new environments as before this site I had no experience in web development, I really developed my CSS, HTML and JavaScript during this project. Additionally, designing my own website gave me more freedom in terms of layout and styling to create an excellent user experience for you.</p>
+
+            <!-- Embedded YouTube video -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/2KnXH0vRgRo?si=SQRsmxMwQ2MgF9Pv"
+                        title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; 
+                    encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+
+            <ul class="project-links">
+                <li><a href="https://jacobvillard.wordpress.com/2024/12/02/creating-a-portfolio-website/" target="_blank">Blog Post on Development Process</a></li>
+                <li><a href="https://github.com/jacobvillard/.github.io" target="_blank">Source Code on GitHub</a></li>
+            </ul>
+        </div>
+        <div class="project">
+            <h2>Guild Hall Environment</h2>
+            <p>Guild Hall Environment was created for my digital narrative project as a deliverable. This was project was created as a 3D environment in unity HDRP pipeline and showcases the use of god rays and screen space reflections.</p>
+
+            <!-- Embedded YouTube video -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/ARTBy8aUvf0?si=8GXHcOPFnkQ7pSou"
+                        title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; 
+                    encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <ul class="project-links">
+                <li><a href="https://jacobvillard.wordpress.com/2024/06/18/digital-narrative-project/" target="_blank">Blog Post on the Module</a></li>
+            </ul>
+        </div>
+        <div class="project">
+            <h2>Emu War</h2>
+            <p>Emu war was made as a part of a group for the advanced gameplay development module, the opportunity of working on this project allowed me to really refine my skills for the user experience including the player controller, vehicle, map bounds and objective mechanics. In addition to the mechanics, I also produced the main menu(something I am very proud of due to it being diegetic, as well as movable map, mini map and cutscenes at the beginning and end of the game. I would add whilst I really liked what I produced, I was not happy with the way the game is unfinished mechanically or visually, however I am happy with my own contribution to the project as it was great learning experience personally for me especially in term of user experience.</p>
+
+            <!-- Embedded YouTube video -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/yIVcOkPh4l4?si=81utBLnFr2gk1JtR"
+                        title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; 
+                    encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+
+            <ul class="project-links">
+                <li><a href="https://github.com/Darknerior/emuwar" target="_blank">Source Code on GitHub</a></li>
+            </ul>
+        </div>
+        <div class="project">
+            <h2>Poly Racer</h2>
+            <p>Poly Racer was one of my first attempts at creating a game, this game was created as one of two projects during the summer before I started at Salford University. It showcases the first time I used procedural generation. I have included this piece at will always hold a special place in my heart especially as friends and family played it however I have come along way since this project.</p>
+
+            <!-- Embedded YouTube video -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/OMUCxoXWQ-U?si=DeHyR8L6f1b-2b9V"
+                        title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; 
+                    encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+
+            <ul class="project-links">
+                <li><a href="https://youtu.be/a8moFY7iLTM?si=L1uN1BBc_wSN8Vgy" target="_blank">Youtube video on the development process</a></li>
+                <li><a href="https://darknerior.itch.io/poly-racer" target="_blank">Download the project on itch</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="career" class="content-section">
+        <h3>Career</h3>
+
+        <!-- Career Tabs (Hidden by Default) -->
+        <div class="career-tabs">
+            <button onclick="filterCategory('All')" class="active">All</button>
+            <button onclick="filterCategory('Job')">Jobs</button>
+            <button onclick="filterCategory('Volunteering')">Volunteering</button>
+            <button onclick="filterCategory('Esports')">Esports</button>
+            <button onclick="filterCategory('Education')">Education</button>
+        </div>
+
+        <!-- Career Cards (Hidden by Default) -->
+        <div id="career-section" class="container">
+            <div class="career-card" data-category="Job">
+                <div class="career-header">
+                    <img src="ss.png" alt="Scopeium Studios" class="career-logo">
+                    <div>
+                        <h4>Scopeium Studios</h4>
+                        <p>Creative Director & Lead Programmer</p>
+                    </div>
+                </div>
+                <p class="career-duration">Sep 2024 - Present</p>
+            </div>
+
+            <div class="career-card" data-category="Job">
+                <div class="career-header">
+                    <img src="zumu.png" alt="Zumuku Sushi" class="career-logo">
+                    <div>
+                        <h4>Zumuku Sushi</h4>
+                        <p>KP, Chef</p>
+                    </div>
+                </div>
+                <p class="career-duration">Dec 2021 - 2024</p>
+            </div>
+            
+            
+            <div class="career-card" data-category="Education">
+                <div class="career-header">
+                    <img src="su.png" alt="University of Salford" class="career-logo">
+                    <div>
+                        <h4>University of Salford</h4>
+                        <p>BSc (Hons) Games Design & Production</p>
+                    </div>
+                </div>
+                <p class="career-duration">Sep 2023 - Present</p>
+            </div>
+
+            <div class="career-card" data-category="Education">
+                <div class="career-header">
+                    <img src="bc.png" alt="Bury College" class="career-logo">
+                    <div>
+                        <h4>Bury College</h4>
+                        <p>Level 4 Higher National Certificate in Digital Technologies (Games and Animation) – MERIT </p>
+                        
+                    </div>
+                </div>
+                <p class="career-duration">Sep 2022 - 2023</p>
+            </div>
+
+            <div class="career-card" data-category="Education">
+                <div class="career-header">
+                    <img src="bc.png" alt="Bury College" class="career-logo">
+                    <div>
+                        <h4>Bury College</h4>
+                        <p>Level 3 National Extended Diploma in Computing – D*D*D* </p>
+
+                    </div>
+                </div>
+                <p class="career-duration">Sep 2021 - 2022</p>
+            </div>
+
+            <div class="career-card" data-category="Education">
+                <div class="career-header">
+                    <img src="bc.png" alt="Bury College" class="career-logo">
+                    <div>
+                        <h4>Bury College</h4>
+                        <p> Level 3 National Foundation Diploma in Computing – D* </p>
+
+                    </div>
+                </div>
+                <p class="career-duration">Sep 2020 - 2021</p>
+            </div>
+
+            <div class="career-card" data-category="Education">
+                <div class="career-header">
+                    <img src="wh.png" alt="Woodhey High School" class="career-logo">
+                    <div>
+                        <h4>Woodhey High School</h4>
+                        <p> Creative iMedia(L2) – Distinction<br>
+                            Computer Science – 6<br>
+                            Combined Science – 7/7<br>
+                            English Language – 7<br>
+                            English Literature – 7<br>
+                            Mathematics - 8<br>
+                            History - 6<br>
+                            Religious Studies - 6<br>
+                            French - 7
+                        </p>
+
+                    </div>
+                </div>
+                <p class="career-duration">Sep 2014 - 2020</p>
+            </div>
+            
+
+            <div class="career-card" data-category="Volunteering">
+                <div class="career-header">
+                    <img src="ct.png" alt="Chaos Theory" class="career-logo">
+                    <div>
+                        <h4>Chaos Theory Secret Laboratory</h4>
+                        <p>Junior Moderator, Moderator</p>
+                    </div>
+                </div>
+                <p class="career-duration">Sep 2024 - Present</p>
+            </div>
+
+            <div class="career-card" data-category="Volunteering">
+                <div class="career-header">
+                    <img src="salfesports.png" alt="Salford Esports Society" class="career-logo">
+                    <div>
+                        <h4>Salford Esports Society</h4>
+                        <p>Valorant Game Rep</p>
+                    </div>
+                </div>
+                <p class="career-duration">Sep 2024 - Present</p>
+            </div>
+
+            <div class="career-card" data-category="Volunteering">
+                <div class="career-header">
+                    <img src="coop.png" alt="Coop Community" class="career-logo">
+                    <div>
+                        <h4>Coop Community Secret Laboratory</h4>
+                        <p>Discord and Game Moderator</p>
+                    </div>
+                </div>
+                <p class="career-duration">Aug 2020 - 2021</p>
+            </div>
+
+            <div class="career-card" data-category="Volunteering">
+                <div class="career-header">
+                    <img src="wh.png" alt="Woodhey High School" class="career-logo">
+                    <div>
+                        <h4>Woodhey High School</h4>
+                        <p>Ambassador, Prefect & Maths Tutor</p>
+                    </div>
+                </div>
+                <p class="career-duration">Sep 2017 - 2020</p>
+            </div>
+
+            <div class="career-card" data-category="Esports">
+                <div class="career-header">
+                    <img src="salfesports.png" alt="Salford Esports Society" class="career-logo">
+                    <div>
+                        <h4>Salford Cubs Marvel Rivals</h4>
+                        <p>Team Captain, IGL</p>
+                    </div>
+                </div>
+                <p class="career-duration">Mar 2025 - Present</p>
+            </div>
+
+            <div class="career-card" data-category="Esports">
+                <div class="career-header">
+                    <img src="vva.png" alt="Valkyrie Valor Esports" class="career-logo">
+                    <div>
+                        <h4>Valkyrie Valor Esports</h4>
+                        <p>Academy Valorant Player</p>
+                    </div>
+                </div>
+                <p class="career-duration">Jan 2025 - Mar 2025</p>
+            </div>
+
+            <div class="career-card" data-category="Esports">
+                <div class="career-header">
+                    <img src="salfesports.png" alt="Salford Esports Society" class="career-logo">
+                    <div>
+                        <h4>Salford Lions Valorant</h4>
+                        <p>Sub Player, Manager</p>
+                    </div>
+                </div>
+                <p class="career-duration">Sep 2024 - Jan 2025</p>
+            </div>
+
+            <div class="career-card" data-category="Esports">
+                <div class="career-header">
+                    <img src="salfesports.png" alt="Salford Esports Society" class="career-logo">
+                    <div>
+                        <h4>Salford Cubs Valorant</h4>
+                        <p>Player, Manager</p>
+                    </div>
+                </div>
+                <p class="career-duration">Sep 2024 - Jan 2025</p>
+            </div>
+
+            <div class="career-card" data-category="Esports">
+                <div class="career-header">
+                    <img src="nex.png" alt="Nexere Premier Team" class="career-logo">
+                    <div>
+                        <h4>Nexere Premier Team</h4>
+                        <p>IGL, Manager</p>
+                    </div>
+                </div>
+                <p class="career-duration">Apr 2024 - Jun 2024</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="skills" class="content-section">
+        <h3>Skills</h3>
+        <p>Below is an overview of my current workflow, core skills, and tools I utilize in game design and development:</p>
+
+        <h4>Core Workflow</h4>
+        <ul>
+            <li><strong>C# Development for Unity 3D:</strong> Experienced in scripting with C# for Unity, using Rider as my primary development environment.</li>
+            <li><strong>AI Assistance:</strong> I utilise ChatGPT and GitHub Copilot to streamline coding tasks and improve productivity namely in boilerplate and bug fixing</li>
+            <li><strong>Project Management:</strong> Proficient with YouTrack for task management, organizing workflows, and tracking project milestones.</li>
+        </ul>
+
+        <h4>Technical Proficiencies</h4>
+        <ul>
+            <li><strong>Game Design Documentation (GDD):</strong> Skilled in creating comprehensive GDDs to guide project development, align teams and set clear goals.</li>
+            <li><strong>Agile Methodologies:</strong> Familiar with Agile principles for iterative and flexible development cycles.</li>
+            <li><strong>3D Modeling and Rendering:</strong> Proficient with Blender for creating 3D models and assets.</li>
+            <li><strong>Image Manipulation:</strong> Experienced with Photoshop for quick image manipulation and prototyping.</li>
+        </ul>
+
+        <h4>Specialized Skills</h4>
+        <ul>
+            <li><strong>UI/UX Design:</strong> Focused on creating intuitive and user-centered interfaces.</li>
+            <li><strong>Level Design:</strong> Experienced in designing levels that enhance gameplay and player immersion.</li>
+            <li><strong>Unity Expertise:</strong> In-depth understanding of the Unity engine for building complex and interactive game mechanics.</li>
+        </ul>
+
+        <p>While I specialize in the above areas, I am adaptable and capable of working across various roles in game development. I am also open to applying to my skills with industries which would allow me to expand my knowledge base.</p>
+    </section>
+
+    <section id="cli" class="content-section">
+        <h3>Interactive CLI</h3>
+        <div class="cli">
+            <p id="cli-output"></p>
+            <div class="cli-input">
+                <label for="command">> </label>
+                <input type="text" id="command" autocomplete="off" autofocus>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
