@@ -1,86 +1,141 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Dark theme design system */
 @layer base {
   :root {
-    --background: 218 23% 8%;
+    /* Midnight background */
+    --background: 224 45% 6%;
     --foreground: 210 40% 98%;
 
-    --card: 220 23% 12%;
+    /* Cards */
+    --card: 224 32% 10%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 220 23% 12%;
+    --popover: 224 32% 10%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 142 70% 45%;
-    --primary-foreground: 220 23% 8%;
+    /* Main blue */
+    --primary: 199 89% 58%;
+    --primary-foreground: 224 45% 6%;
 
-    --secondary: 220 14% 20%;
+    /* Secondary */
+    --secondary: 225 24% 16%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 220 14% 15%;
-    --muted-foreground: 217 10% 64%;
+    /* Muted */
+    --muted: 223 24% 13%;
+    --muted-foreground: 215 18% 65%;
 
-    --accent: 180 100% 50%;
-    --accent-foreground: 220 23% 8%;
+    /* Violet accent */
+    --accent: 263 85% 70%;
+    --accent-foreground: 224 45% 6%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 72% 55%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 14% 20%;
-    --input: 220 14% 20%;
-    --ring: 142 70% 45%;
+    --border: 220 24% 22%;
+    --input: 220 24% 22%;
+    --ring: 199 89% 58%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 
   * {
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground font-sans;
+
+    background-image:
+      radial-gradient(
+        circle at 15% 10%,
+        rgba(56, 189, 248, 0.12),
+        transparent 30%
+      ),
+      radial-gradient(
+        circle at 85% 20%,
+        rgba(167, 139, 250, 0.1),
+        transparent 30%
+      );
+
+    background-attachment: fixed;
   }
 }
 
-/* Custom scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-muted;
+  background: #080b14;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary rounded-full;
+  background: #334155;
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-primary/80;
+  background: #38bdf8;
 }
 
-/* Terminal styles */
+/* Terminal container */
 .terminal-window {
-  background: linear-gradient(145deg, #1a1b26, #16161e);
-  border: 1px solid rgba(0, 255, 136, 0.3);
+  background: linear-gradient(
+    145deg,
+    rgba(15, 23, 42, 0.98),
+    rgba(8, 11, 20, 0.98)
+  );
+
+  border: 1px solid rgba(56, 189, 248, 0.25);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
+/* Project Cards */
 .project-card {
-  background: linear-gradient(145deg, #1e1e2e, #1a1b26);
-  border: 1px solid rgba(0, 255, 136, 0.2);
-  transition: all 0.3s ease;
+  background: linear-gradient(
+    145deg,
+    rgba(17, 24, 39, 0.95),
+    rgba(10, 14, 25, 0.95)
+  );
+
+  border: 1px solid rgba(148, 163, 184, 0.15);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .project-card:hover {
-  border-color: rgba(0, 255, 136, 0.6);
-  transform: translateY(-4px);
-  box-shadow: 0 10px 40px rgba(0, 255, 136, 0.1);
+  border-color: rgba(56, 189, 248, 0.55);
+
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 35px rgba(56, 189, 248, 0.1);
 }
 
+/* Blue / purple text glow */
 .glow-text {
-  text-shadow: 0 0 10px currentColor;
+  text-shadow:
+    0 0 12px rgba(56, 189, 248, 0.65),
+    0 0 32px rgba(167, 139, 250, 0.25);
+}
+
+/* Selection */
+::selection {
+  background: rgba(56, 189, 248, 0.3);
+  color: white;
 }
