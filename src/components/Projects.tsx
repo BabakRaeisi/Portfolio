@@ -18,7 +18,6 @@ const Projects = () => {
       featured: true,
       blog: "/blog/Pandora",
       code: "https://github.com/BabakRaeisi/Pandora",
-      demo: "https://babakraeisi.itch.io/YOUR-PANDORA-PAGE",
     },
     {
       id: 2,
@@ -40,7 +39,7 @@ const Projects = () => {
       description:
         "A distributed restaurant reservation system with authentication, concurrency control, event-driven processing, caching, and AWS deployment.",
       mediaType: "image",
-      mediaUrl: "/images/microbooker.png",
+      mediaUrl: `${import.meta.env.BASE_URL}images/microbooker.png`,
       tags: ["ASP.NET Core", "C#", "React", "AWS", "Docker"],
       category: "backend",
       featured: true,
@@ -81,21 +80,17 @@ const Projects = () => {
 
   return (
     <section id="projects" className="relative py-24 md:py-32 overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/3 -left-40 w-[450px] h-[450px] rounded-full bg-terminal-green/5 blur-[130px]" />
-
         <div className="absolute bottom-0 -right-40 w-[500px] h-[500px] rounded-full bg-terminal-pink/5 blur-[150px]" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
-          {/* Section heading */}
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-12">
             <div>
               <div className="inline-flex items-center gap-2 mb-4">
                 <span className="w-8 h-px bg-terminal-green" />
-
                 <span className="font-mono text-sm text-terminal-green">
                   Selected Work
                 </span>
@@ -114,7 +109,6 @@ const Projects = () => {
               </p>
             </div>
 
-            {/* Filters */}
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => (
                 <button
@@ -133,14 +127,12 @@ const Projects = () => {
             </div>
           </div>
 
-          {/* Projects */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {visibleProjects.map((project) => (
               <article
                 key={project.id}
                 className="project-card group rounded-2xl overflow-hidden"
               >
-                {/* Media */}
                 <div className="relative aspect-video overflow-hidden bg-background">
                   {project.mediaType === "video" ? (
                     <iframe
@@ -159,7 +151,6 @@ const Projects = () => {
                     />
                   )}
 
-                  {/* Gradient */}
                   <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-card/90 to-transparent pointer-events-none" />
 
                   {project.featured && (
@@ -171,7 +162,6 @@ const Projects = () => {
                   )}
                 </div>
 
-                {/* Content */}
                 <div className="p-6 md:p-7">
                   <div className="flex items-start justify-between gap-6 mb-4">
                     <div>
@@ -201,7 +191,6 @@ const Projects = () => {
                     {project.description}
                   </p>
 
-                  {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-7">
                     {project.tags.map((tag) => (
                       <span
@@ -213,7 +202,6 @@ const Projects = () => {
                     ))}
                   </div>
 
-                  {/* Links */}
                   <div className="flex flex-wrap items-center gap-3 pt-5 border-t border-border/60">
                     <Link
                       to={project.blog}
