@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import Blog from "@/components/Blog";
 import Contact from "@/components/Contact";
-import Terminal from "@/components/Terminal";
 
 const Index = () => {
   return (
@@ -13,7 +12,6 @@ const Index = () => {
       <Projects />
       <Blog />
       <Contact />
-      {/* <Terminal /> */}
     </div>
   );
 };

@@ -38,7 +38,7 @@ const Projects = () => {
         "A 3D Unity arena game with grid-based territory control, AI opponents, pathfinding, pickups, and multiplayer gameplay.",
       mediaType: "video",
       mediaUrl: "https://www.youtube.com/embed/rcxuEdDlwiY",
-      tags: ["Unity", "C#", "Multiplayer", "AI", "Pathfinding"],
+      tags: ["Unity", "C#", "AI", "Pathfinding"],
       category: "game-dev",
       featured: true,
       blog: "/blog/HopHovac",
