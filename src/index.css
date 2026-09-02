@@ -4,30 +4,24 @@
 
 @layer base {
   :root {
-    /* Midnight background */
     --background: 224 45% 6%;
     --foreground: 210 40% 98%;
 
-    /* Cards */
     --card: 224 32% 10%;
     --card-foreground: 210 40% 98%;
 
     --popover: 224 32% 10%;
     --popover-foreground: 210 40% 98%;
 
-    /* Main blue */
     --primary: 199 89% 58%;
     --primary-foreground: 224 45% 6%;
 
-    /* Secondary */
     --secondary: 225 24% 16%;
     --secondary-foreground: 210 40% 98%;
 
-    /* Muted */
     --muted: 223 24% 13%;
     --muted-foreground: 215 18% 65%;
 
-    /* Violet accent */
     --accent: 263 85% 70%;
     --accent-foreground: 224 45% 6%;
 
@@ -52,16 +46,23 @@
   body {
     @apply bg-background text-foreground font-sans;
 
+    min-height: 100vh;
+
     background-image:
       radial-gradient(
-        circle at 15% 10%,
-        rgba(56, 189, 248, 0.12),
+        circle at 15% 5%,
+        rgba(56, 189, 248, 0.13),
+        transparent 28%
+      ),
+      radial-gradient(
+        circle at 88% 15%,
+        rgba(167, 139, 250, 0.11),
         transparent 30%
       ),
       radial-gradient(
-        circle at 85% 20%,
-        rgba(167, 139, 250, 0.1),
-        transparent 30%
+        circle at 50% 80%,
+        rgba(14, 165, 233, 0.05),
+        transparent 35%
       );
 
     background-attachment: fixed;
@@ -69,6 +70,7 @@
 }
 
 /* Scrollbar */
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -86,30 +88,38 @@
   background: #38bdf8;
 }
 
-/* Terminal container */
+/* Terminal-style panels */
+
 .terminal-window {
   background: linear-gradient(
     145deg,
-    rgba(15, 23, 42, 0.98),
-    rgba(8, 11, 20, 0.98)
+    rgba(15, 23, 42, 0.97),
+    rgba(8, 11, 20, 0.97)
   );
 
-  border: 1px solid rgba(56, 189, 248, 0.25);
+  border: 1px solid rgba(56, 189, 248, 0.22);
 
   box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  backdrop-filter: blur(12px);
 }
 
-/* Project Cards */
+/* Project cards */
+
 .project-card {
   background: linear-gradient(
     145deg,
-    rgba(17, 24, 39, 0.95),
-    rgba(10, 14, 25, 0.95)
+    rgba(17, 24, 39, 0.92),
+    rgba(10, 14, 25, 0.92)
   );
 
   border: 1px solid rgba(148, 163, 184, 0.15);
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
 
   transition:
     transform 0.3s ease,
@@ -123,18 +133,20 @@
   transform: translateY(-5px);
 
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 22px 60px rgba(0, 0, 0, 0.4),
     0 0 35px rgba(56, 189, 248, 0.1);
 }
 
-/* Blue / purple text glow */
+/* Glow */
+
 .glow-text {
   text-shadow:
     0 0 12px rgba(56, 189, 248, 0.65),
-    0 0 32px rgba(167, 139, 250, 0.25);
+    0 0 35px rgba(167, 139, 250, 0.25);
 }
 
 /* Selection */
+
 ::selection {
   background: rgba(56, 189, 248, 0.3);
   color: white;

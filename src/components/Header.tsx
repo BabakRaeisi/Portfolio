@@ -1,125 +1,97 @@
 import { useState } from "react";
-import { Search, Menu, X } from "lucide-react";
+import { Menu, X, Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
 
   const navItems = [
     { label: "Home", href: "#home" },
     { label: "Projects", href: "#projects" },
+    { label: "Dev Logs", href: "#blog" },
     { label: "Contact", href: "#contact" },
   ];
 
-  const [filteredHeadings, setFilteredHeadings] = useState<
-    { id: string; text: string }[]
-  >([]);
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const query = e.target.value.toLowerCase();
-    setSearchQuery(e.target.value);
-
-    if (!query) {
-      setFilteredHeadings([]);
-      return;
-    }
-
-    const headings = Array.from(
-      document.querySelectorAll(
-        "section[id] h1, section[id] h2, section[id] h3",
-      ),
-    ) as HTMLElement[];
-
-    const matches = headings
-      .map((h) => {
-        const parentSection = h.closest("section[id]");
-        const id = parentSection?.id || "";
-        return { id, text: h.innerText };
-      })
-      .filter(
-        (item) =>
-          item.id &&
-          item.text.toLowerCase().includes(searchQuery.toLowerCase()),
-      );
-
-    setFilteredHeadings(matches);
-  };
-
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-primary/20">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="font-mono text-xl font-bold text-terminal-green glow-text">
-            {"<BabakRaeisi/Dev>"}
-          </div>
+    <header className="fixed top-0 left-0 right-0 z-50">
+      {/* Glass background */}
+      <div className="absolute inset-0 bg-background/75 backdrop-blur-xl border-b border-border/60" />
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+      <div className="relative container mx-auto px-4">
+        <div className="h-20 flex items-center justify-between">
+          {/* Logo */}
+          <a
+            href="#home"
+            className="group flex items-center gap-3 font-mono"
+            aria-label="Go to home"
+          >
+            <div className="flex items-center justify-center w-10 h-10 rounded-xl border border-terminal-green/30 bg-terminal-green/10 transition-all duration-300 group-hover:border-terminal-green/60 group-hover:bg-terminal-green/15">
+              <span className="text-terminal-green font-bold text-lg">B</span>
+            </div>
+
+            <div className="hidden sm:block">
+              <p className="text-sm font-semibold text-foreground leading-none">
+                Babak Raeisi
+              </p>
+
+              <p className="text-xs text-muted-foreground mt-1">
+                Software Engineer
+              </p>
+            </div>
+          </a>
+
+          {/* Desktop navigation */}
+          <nav className="hidden md:flex items-center gap-1 rounded-xl border border-border/60 bg-card/40 backdrop-blur-sm p-1">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-foreground hover:text-terminal-green transition-colors duration-200 font-mono"
+                className="px-4 py-2 rounded-lg text-sm font-mono text-muted-foreground hover:text-foreground hover:bg-secondary/80 transition-all duration-200"
               >
                 {item.label}
               </a>
             ))}
           </nav>
 
-          {/* Search Bar */}
-          <div className="hidden md:flex items-center space-x-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search the site..."
-                value={searchQuery}
-                onChange={handleSearchChange}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    const q = searchQuery.toLowerCase();
+          {/* Desktop socials */}
+          <div className="hidden md:flex items-center gap-2">
+            <a
+              href="https://github.com/BabakRaeisi"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Babak Raeisi on GitHub"
+              className="flex items-center justify-center w-9 h-9 rounded-lg text-muted-foreground hover:text-terminal-green hover:bg-terminal-green/10 transition-all duration-200"
+            >
+              <Github className="h-4 w-4" />
+            </a>
 
-                    // Check for local heading matches
-                    const headingMatch = document.querySelector(`[id*="${q}"]`);
-                    if (headingMatch) {
-                      headingMatch.scrollIntoView({ behavior: "smooth" });
-                      return;
-                    }
-                  }
-                }}
-                className="pl-10 w-64 bg-muted/50 border-primary/30 focus:border-primary font-mono"
-              />
-              {searchQuery && filteredHeadings.length > 0 && (
-                <div className="absolute left-0 right-0 mt-1 bg-muted border border-primary/20 rounded-md shadow-lg z-50 max-h-64 overflow-y-auto">
-                  {filteredHeadings.map((heading) => (
-                    <button
-                      key={heading.id}
-                      onClick={() => {
-                        const target = document.getElementById(heading.id);
-                        if (target) {
-                          target.scrollIntoView({ behavior: "smooth" });
-                          setSearchQuery("");
-                          setFilteredHeadings([]);
-                        }
-                      }}
-                      className="w-full text-left px-4 py-2 hover:bg-primary/10 font-mono text-sm text-foreground"
-                    >
-                      {heading.text}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+            <a
+              href="https://www.linkedin.com/in/babakraeisi/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Babak Raeisi on LinkedIn"
+              className="flex items-center justify-center w-9 h-9 rounded-lg text-muted-foreground hover:text-terminal-cyan hover:bg-terminal-cyan/10 transition-all duration-200"
+            >
+              <Linkedin className="h-4 w-4" />
+            </a>
+
+            <a href="#contact">
+              <Button
+                size="sm"
+                className="ml-2 bg-terminal-green hover:bg-terminal-green/90 text-black font-mono font-semibold"
+              >
+                Contact
+              </Button>
+            </a>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile button */}
           <Button
             variant="ghost"
-            size="sm"
-            className="md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            size="icon"
+            className="md:hidden text-muted-foreground hover:text-terminal-green"
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+            aria-label="Toggle navigation menu"
           >
             {isMenuOpen ? (
               <X className="h-5 w-5" />
@@ -129,28 +101,55 @@ const Header = () => {
           </Button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile menu */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 py-4 border-t border-primary/20">
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
+          <div className="md:hidden pb-4">
+            <div className="rounded-2xl border border-border/70 bg-card/95 backdrop-blur-xl p-3 shadow-2xl">
+              <nav className="flex flex-col">
+                {navItems.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="px-4 py-3 rounded-xl font-mono text-sm text-muted-foreground hover:text-terminal-green hover:bg-terminal-green/5 transition-all duration-200"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </nav>
+
+              <div className="h-px bg-border my-3" />
+
+              <div className="flex items-center gap-2 px-2">
                 <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-foreground hover:text-terminal-green transition-colors duration-200 font-mono"
-                  onClick={() => setIsMenuOpen(false)}
+                  href="https://github.com/BabakRaeisi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Babak Raeisi on GitHub"
+                  className="flex items-center justify-center w-10 h-10 rounded-lg border border-border text-muted-foreground hover:text-terminal-green hover:border-terminal-green/30 transition-all"
                 >
-                  {item.label}
+                  <Github className="h-4 w-4" />
                 </a>
-              ))}
-              <div className="relative mt-4">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  placeholder="Search headings..."
-                  value={searchQuery}
-                  onChange={handleSearchChange}
-                  className="pl-10 w-64 bg-muted/50 border-primary/30 focus:border-primary font-mono"
-                />
+
+                <a
+                  href="https://www.linkedin.com/in/babakraeisi/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Babak Raeisi on LinkedIn"
+                  className="flex items-center justify-center w-10 h-10 rounded-lg border border-border text-muted-foreground hover:text-terminal-cyan hover:border-terminal-cyan/30 transition-all"
+                >
+                  <Linkedin className="h-4 w-4" />
+                </a>
+
+                <a
+                  href="#contact"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="flex-1"
+                >
+                  <Button className="w-full bg-terminal-green text-black hover:bg-terminal-green/90 font-mono">
+                    Contact Me
+                  </Button>
+                </a>
               </div>
             </div>
           </div>

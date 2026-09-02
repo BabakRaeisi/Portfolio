@@ -1,19 +1,9 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Github, ExternalLink, Star } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
 
 const Projects = () => {
   const [filter, setFilter] = useState("all");
-  const [showAll, setShowAll] = useState(false);
 
   const projects = [
     {
@@ -30,7 +20,6 @@ const Projects = () => {
       code: "https://github.com/BabakRaeisi/Pandora",
       demo: "https://babakraeisi.itch.io/YOUR-PANDORA-PAGE",
     },
-
     {
       id: 2,
       title: "HopHovac",
@@ -78,154 +67,196 @@ const Projects = () => {
     },
   ];
 
-  const categories = ["all", "game-dev", "backend", "3d"];
+  const categories = [
+    { value: "all", label: "All" },
+    { value: "game-dev", label: "Game Dev" },
+    { value: "backend", label: "Backend" },
+    { value: "3d", label: "3D / Art" },
+  ];
+
   const visibleProjects =
-    filter === "all" ? projects : projects.filter((p) => p.category === filter);
-  const displayedProjects = showAll
-    ? visibleProjects
-    : visibleProjects.slice(0, 6);
+    filter === "all"
+      ? projects
+      : projects.filter((project) => project.category === filter);
 
   return (
-    <section id="projects" className="py-20 bg-muted/20">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-mono font-bold mb-4">
-            <span className="text-terminal-cyan glow-text">
-              Featured Projects
-            </span>
-          </h2>
-          <p className="text-xl text-muted-foreground font-mono">
-            <span className="text-terminal-green">$</span> ls -la ~/projects/
-          </p>
-        </div>
+    <section id="projects" className="relative py-24 md:py-32 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/3 -left-40 w-[450px] h-[450px] rounded-full bg-terminal-green/5 blur-[130px]" />
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              variant={filter === category ? "default" : "outline"}
-              onClick={() => setFilter(category)}
-              className={`font-mono capitalize ${
-                filter === category
-                  ? "bg-terminal-green text-black"
-                  : "border-terminal-green/50 text-terminal-green hover:bg-terminal-green hover:text-black"
-              }`}
-            >
-              {category}
-            </Button>
-          ))}
-        </div>
+        <div className="absolute bottom-0 -right-40 w-[500px] h-[500px] rounded-full bg-terminal-pink/5 blur-[150px]" />
+      </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {displayedProjects.map((project) => (
-            <Card
-              key={project.id}
-              className="project-card group cursor-pointer"
-            >
-              <div className="relative overflow-hidden rounded-t-lg">
-                {project.mediaType === "video" ? (
-                  <iframe
-                    src={project.mediaUrl}
-                    title={project.title}
-                    className="w-full h-48"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                ) : (
-                  <img
-                    src={project.mediaUrl}
-                    alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                )}
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-6xl mx-auto">
+          {/* Section heading */}
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-12">
+            <div>
+              <div className="inline-flex items-center gap-2 mb-4">
+                <span className="w-8 h-px bg-terminal-green" />
 
-                {/* Always render badge in top-right */}
-                {project.featured && (
-                  <Badge className="absolute top-2 right-2 bg-terminal-amber text-black font-mono">
-                    Featured
-                  </Badge>
-                )}
+                <span className="font-mono text-sm text-terminal-green">
+                  Selected Work
+                </span>
               </div>
 
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="font-mono text-lg text-terminal-green">
-                    {project.title}
-                  </CardTitle>
-                </div>
-                <CardDescription className="font-mono text-sm">
-                  {project.description}
-                </CardDescription>
-              </CardHeader>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+                Featured{" "}
+                <span className="bg-gradient-to-r from-terminal-green via-terminal-cyan to-terminal-pink bg-clip-text text-transparent">
+                  Projects
+                </span>
+              </h2>
 
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <Badge
-                      key={tag}
-                      variant="secondary"
-                      className="font-mono text-xs"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
+              <p className="mt-4 text-muted-foreground max-w-xl leading-relaxed">
+                A selection of software, game development, backend, and
+                interactive 3D work.
+              </p>
+            </div>
 
-              <CardFooter className="flex justify-between">
-                <div className="flex space-x-2">
-                  {project.code && (
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="font-mono"
-                      onClick={() => window.open(project.code, "_blank")}
-                    >
-                      <Github className="h-4 w-4 mr-2" />
-                      Code
-                    </Button>
+            {/* Filters */}
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <button
+                  key={category.value}
+                  type="button"
+                  onClick={() => setFilter(category.value)}
+                  className={`px-4 py-2 rounded-lg border font-mono text-sm transition-all duration-200 ${
+                    filter === category.value
+                      ? "border-terminal-green/50 bg-terminal-green/10 text-terminal-green"
+                      : "border-border bg-card/40 text-muted-foreground hover:text-foreground hover:border-border/80 hover:bg-card"
+                  }`}
+                >
+                  {category.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Projects */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {visibleProjects.map((project) => (
+              <article
+                key={project.id}
+                className="project-card group rounded-2xl overflow-hidden"
+              >
+                {/* Media */}
+                <div className="relative aspect-video overflow-hidden bg-background">
+                  {project.mediaType === "video" ? (
+                    <iframe
+                      src={project.mediaUrl}
+                      title={project.title}
+                      className="absolute inset-0 w-full h-full"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <img
+                      src={project.mediaUrl}
+                      alt={project.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
                   )}
 
-                  {project.blog && (
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="font-mono"
-                      onClick={() => window.open(project.blog, "_Self")}
-                    >
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Blog
-                    </Button>
+                  {/* Gradient */}
+                  <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-card/90 to-transparent pointer-events-none" />
+
+                  {project.featured && (
+                    <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full border border-terminal-green/20 bg-background/80 backdrop-blur-md">
+                      <span className="font-mono text-xs text-terminal-green">
+                        Featured
+                      </span>
+                    </div>
                   )}
                 </div>
 
-                {project.demo && (
-                  <Button
-                    size="sm"
-                    className="bg-terminal-cyan hover:bg-terminal-cyan/80 text-black font-mono"
-                    onClick={() => window.open(project.demo, "_blank")}
-                  >
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    Demo
-                  </Button>
-                )}
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
+                {/* Content */}
+                <div className="p-6 md:p-7">
+                  <div className="flex items-start justify-between gap-6 mb-4">
+                    <div>
+                      <p className="font-mono text-xs uppercase tracking-wider text-terminal-cyan mb-2">
+                        {project.category === "game-dev"
+                          ? "Game Development"
+                          : project.category === "backend"
+                            ? "Backend Engineering"
+                            : "Interactive 3D"}
+                      </p>
 
-        <div className="text-center mt-12">
-          <Button
-            size="lg"
-            variant="outline"
-            onClick={() => setShowAll((prev) => !prev)}
-            className="border-terminal-pink text-terminal-pink hover:bg-terminal-pink hover:text-black font-mono"
-          >
-            {showAll ? "View Less" : "View All Projects"}
-          </Button>
+                      <h3 className="text-2xl font-semibold text-foreground group-hover:text-terminal-green transition-colors">
+                        {project.title}
+                      </h3>
+                    </div>
+
+                    <Link
+                      to={project.blog}
+                      aria-label={`Read about ${project.title}`}
+                      className="shrink-0 flex items-center justify-center w-10 h-10 rounded-lg border border-border text-muted-foreground hover:text-terminal-green hover:border-terminal-green/40 hover:bg-terminal-green/5 transition-all"
+                    >
+                      <ArrowUpRight className="h-5 w-5" />
+                    </Link>
+                  </div>
+
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    {project.description}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-7">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-1 rounded-md bg-secondary/70 border border-border/60 font-mono text-xs text-muted-foreground"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Links */}
+                  <div className="flex flex-wrap items-center gap-3 pt-5 border-t border-border/60">
+                    <Link
+                      to={project.blog}
+                      className="inline-flex items-center gap-2 text-sm font-mono text-terminal-green hover:text-terminal-cyan transition-colors"
+                    >
+                      View Case Study
+                      <ArrowUpRight className="h-4 w-4" />
+                    </Link>
+
+                    {project.code && (
+                      <a
+                        href={project.code}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-mono text-muted-foreground hover:text-foreground hover:bg-secondary transition-all"
+                      >
+                        <Github className="h-4 w-4" />
+                        Code
+                      </a>
+                    )}
+
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-mono text-muted-foreground hover:text-terminal-cyan hover:bg-terminal-cyan/5 transition-all"
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                        Demo
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {visibleProjects.length === 0 && (
+            <div className="text-center py-20 text-muted-foreground font-mono">
+              No projects found.
+            </div>
+          )}
         </div>
       </div>
     </section>
