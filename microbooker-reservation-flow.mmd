@@ -1,0 +1,41 @@
+sequenceDiagram
+
+    participant Client as React Client
+    participant API as Reservation API
+    participant Redis
+    participant Mongo as MongoDB
+    participant Kafka
+    participant Worker as Storage Worker
+
+    Client->>API: POST /api/reservations + JWT
+
+    API->>API: Validate JWT
+    API->>API: Extract CustomerId from token
+
+    API->>Redis: Acquire table/time lock
+
+    alt Lock unavailable
+        Redis-->>API: Lock rejected
+        API-->>Client: 409 Conflict
+    else Lock acquired
+        Redis-->>API: Lock accepted
+
+        API->>Mongo: Insert reservation
+
+        alt Duplicate reservation
+            Mongo-->>API: Duplicate key
+            API-->>Client: 409 Conflict
+        else Reservation stored
+            Mongo-->>API: Insert successful
+
+            API->>Kafka: Publish ReservationCreated event
+
+            API-->>Client: 202 Accepted
+
+            Kafka->>Worker: Deliver reservation event
+
+            Worker->>Mongo: Upsert reservation by Id
+            Worker->>Redis: Cache reservation for 24 hours
+            Worker->>Kafka: Commit message offset
+        end
+    end

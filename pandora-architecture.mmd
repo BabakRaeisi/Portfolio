@@ -1,0 +1,35 @@
+flowchart LR
+
+    Player["Player"]
+    Unity["Pandora<br/>Unity Application"]
+
+    MiniGames["Cognitive Mini-Games<br/>Constellation / SWM / Bridge"]
+
+    SessionData["Session + Trial Data"]
+
+    API["Pandora Analytics API<br/>ASP.NET Core"]
+
+    App["Application Layer"]
+    Domain["Domain Layer"]
+    Infra["Infrastructure Layer"]
+
+    Postgres[("PostgreSQL")]
+
+    Queries["Analytics Queries<br/>Players / Sessions / Trials"]
+
+    Player --> Unity
+
+    Unity --> MiniGames
+
+    MiniGames -->|"Record trial results"| SessionData
+
+    SessionData -->|"JSON / HTTPS"| API
+
+    API --> App
+    App --> Domain
+    App --> Infra
+
+    Infra -->|"EF Core"| Postgres
+
+    API --> Queries
+    Queries -->|"Read analytics"| Postgres

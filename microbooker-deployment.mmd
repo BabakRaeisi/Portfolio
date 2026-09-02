@@ -1,0 +1,39 @@
+flowchart TD
+
+    Developer["Developer Pushes to Main"]
+    GitHub["GitHub Repository"]
+    Actions["GitHub Actions"]
+
+    DotNetBuild["Restore + Build .NET Solution"]
+    ReactBuild["Install + Build React Client"]
+
+    APIImage["Build Reservation API<br/>Docker Image"]
+    WorkerImage["Build Storage Worker<br/>Docker Image"]
+
+    ECR[("Amazon ECR")]
+
+    EC2["AWS EC2<br/>Application Services"]
+
+    Route53["Route 53"]
+    CloudFront["CloudFront"]
+    Browser["User Browser"]
+
+    Developer --> GitHub
+    GitHub --> Actions
+
+    Actions --> DotNetBuild
+    Actions --> ReactBuild
+
+    DotNetBuild --> APIImage
+    DotNetBuild --> WorkerImage
+
+    APIImage --> ECR
+    WorkerImage --> ECR
+
+    ECR -->|"Pull Docker Images"| EC2
+
+    Browser --> Route53
+    Route53 --> CloudFront
+    CloudFront -->|"Serve Frontend"| Browser
+
+    Browser -->|"HTTPS API Requests"| EC2

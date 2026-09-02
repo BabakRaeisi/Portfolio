@@ -1,70 +1,64 @@
-
-import { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Calendar, Clock, ArrowRight } from 'lucide-react';
+import { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Calendar, Clock, ArrowRight } from "lucide-react";
 
 const Blog = () => {
   const [expandedPost, setExpandedPost] = useState<number | null>(null);
   const [showAll, setShowAll] = useState(false);
-  
-
 
   const posts = [
     {
       id: 1,
-      title: 'Building a Tetris-Style Inventory System in Unity',
-      excerpt: 'Tetris-style Unity inventory with item rotation and types. Built under strict deadlines to showcase system design skills.',
-      date: '2024-06-18',
-      readTime: '5 min read',
-      tags: ['UniProj', 'C#', 'UI', 'Prototype'],
+      title: "Building Pandora: A Cognitive Training Game",
+      excerpt:
+        "A look at how I built Pandora in Unity, including three cognitive mini-games, progressive difficulty, session tracking, and backend analytics.",
+      date: "2026-09-01",
+      readTime: "6 min read",
+      tags: ["Unity", "C#", "ASP.NET Core", "Game Development"],
       featured: true,
-      link:'blog/TetrisInventory'
+      link: "/blog/Pandora",
     },
     {
       id: 2,
-      title: 'Developing an FPS Demo',
-      excerpt: 'A rapid FPS prototype built for my creative portfolio module, showcasing AI, animation, sound, events, raycasting, and a stylized visual design focused on enemy elimination.', 
-      date: '2024-12-2',
-      readTime: '2 min read',
-      tags: ['UniProj', 'C#', 'Prototype'],
-      featured: false, 
-      link: 'blog/FpsDemo'
+      title: "Building HopHovac: Grid Systems, AI and Multiplayer",
+      excerpt:
+        "A breakdown of HopHovac's grid-based territory system, movement architecture, AI opponents, pathfinding, pickups, and multiplayer gameplay.",
+      date: "2026-09-01",
+      readTime: "6 min read",
+      tags: ["Unity", "C#", "AI", "Pathfinding", "Multiplayer"],
+      featured: true,
+      link: "/blog/HopHovac",
     },
     {
       id: 3,
-      title: 'Hierarchical A* Pathfinding',
-      excerpt: 'A  hierarchical A* system built for enemy AI, and optimized for performance.',
-      content: 'After running production workloads on Kubernetes for several years, I\'ve learned valuable lessons about container orchestration. This post covers resource management, security considerations, and monitoring strategies...',
-      date: '2024-06-17',
-      readTime: '4 min read',
-      tags: ['UniProj', 'AI', 'Prototype', 'Pathfinding'],
+      title: "Building MicroBooker: A Distributed Reservation System",
+      excerpt:
+        "How I built a restaurant reservation system using ASP.NET Core, Redis, Kafka, MongoDB, React, Docker, and AWS.",
+      date: "2026-09-01",
+      readTime: "8 min read",
+      tags: ["ASP.NET Core", "Redis", "Kafka", "AWS", "Docker"],
       featured: true,
-      link: 'blog/AStar'
+      link: "/blog/MicroBooker",
     },
     {
       id: 4,
-      title: 'FYGP: Final Reflections and Development Overview',
-      excerpt: 'A release steam game made for a uni module in which I was a lead programmer, implementing core mechanics and systems.',
-      content: 'After running production workloads on Kubernetes for several years, I\'ve learned valuable lessons about container orchestration. This post covers resource management, security considerations, and monitoring strategies...',
-      date: '2025-07-06',
-      readTime: '5 min read',
-      tags: ['C#', 'Steam', 'UniProj'],
-      featured: false,
-      link: 'blog/FallenVestige'
+      title: "Recreating The Hatch from LOST in Unreal Engine",
+      excerpt:
+        "The development process behind my recreation of the Swan Station from LOST, from reference gathering and modeling to texturing, lighting, and environmental storytelling.",
+      date: "2026-09-01",
+      readTime: "7 min read",
+      tags: ["Unreal Engine", "Maya", "Substance Painter", "Environment Art"],
+      featured: true,
+      link: "/blog/Lost",
     },
-    {
-      id: 4,
-      title: 'Accessibility Dissertation',
-      excerpt: 'A dissertation exploring accessibility in game design, focusing on the player experience impacts',
-      content: 'After running production workloads on Kubernetes for several years, I\'ve learned valuable lessons about container orchestration. This post covers resource management, security considerations, and monitoring strategies...',
-      date: '2025-07-06',
-      readTime: '2 min read',
-      tags: ['Academic', 'Accessibility', 'UniProj'],
-      featured: false,
-      link: 'blog/AccessibilityDissertation'
-    }
   ];
 
   const togglePost = (postId: number) => {
@@ -81,7 +75,8 @@ const Blog = () => {
             <span className="text-terminal-amber glow-text">Dev Logs</span>
           </h2>
           <p className="text-xl text-muted-foreground font-mono">
-            <span className="text-terminal-green">$</span> cat ~/thoughts/technical-posts.md
+            <span className="text-terminal-green">$</span> cat
+            ~/thoughts/technical-posts.md
           </p>
         </div>
 
@@ -120,7 +115,11 @@ const Blog = () => {
 
                 <div className="flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="font-mono text-xs">
+                    <Badge
+                      key={tag}
+                      variant="secondary"
+                      className="font-mono text-xs"
+                    >
                       {tag}
                     </Badge>
                   ))}
@@ -128,24 +127,18 @@ const Blog = () => {
               </CardHeader>
 
               <CardContent>
-                {expandedPost === post.id && (
-                  <div className="mt-4 p-4 bg-muted/30 rounded-lg border-l-4 border-terminal-green">
-                    <p className="font-mono text-sm leading-relaxed">
-                      {post.content}
-                    </p>
-                  </div>
-                )}
-
                 <div className="mt-4 flex justify-between items-center">
                   <Button
                     variant="ghost"
-                    onClick={() => window.open(post.link, '_Self')}
+                    onClick={() => window.open(post.link, "_Self")}
                     className="font-mono text-terminal-green hover:text-terminal-green/80"
                   >
-                    {expandedPost === post.id ? 'Collapse' : 'Read More'}
-                    <ArrowRight className={`ml-2 h-4 w-4 transition-transform ${
-                      expandedPost === post.id ? 'rotate-90' : ''
-                    }`} />
+                    {expandedPost === post.id ? "Collapse" : "Read More"}
+                    <ArrowRight
+                      className={`ml-2 h-4 w-4 transition-transform ${
+                        expandedPost === post.id ? "rotate-90" : ""
+                      }`}
+                    />
                   </Button>
                 </div>
               </CardContent>
@@ -155,12 +148,12 @@ const Blog = () => {
 
         <div className="text-center mt-12">
           <Button
-              size="lg"
-              variant="outline"
-              onClick={() => setShowAll(!showAll)}
-              className="border-terminal-amber text-terminal-amber hover:bg-terminal-amber hover:text-black font-mono"
+            size="lg"
+            variant="outline"
+            onClick={() => setShowAll(!showAll)}
+            className="border-terminal-amber text-terminal-amber hover:bg-terminal-amber hover:text-black font-mono"
           >
-            {showAll ? 'View Less' : 'View All Posts'}
+            {showAll ? "View Less" : "View All Posts"}
           </Button>
         </div>
       </div>

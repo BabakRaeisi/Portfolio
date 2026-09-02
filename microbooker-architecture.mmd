@@ -1,0 +1,31 @@
+flowchart LR
+
+    User["User Browser"]
+    Client["React / Vite Client"]
+
+    Auth["Auth API<br/>ASP.NET Core"]
+    Postgres[("PostgreSQL")]
+
+    API["Reservation API<br/>ASP.NET Core"]
+    Redis[("Redis")]
+    Mongo[("MongoDB<br/>BookerDb")]
+    Kafka[("Kafka<br/>reservations topic")]
+    Worker["Storage Worker<br/>.NET BackgroundService"]
+
+    User --> Client
+
+    Client -->|"Register / Login"| Auth
+    Auth -->|"Store Users"| Postgres
+    Auth -->|"JWT Access Token"| Client
+
+    Client -->|"GET Reservations"| API
+    Client -->|"POST Reservation + JWT"| API
+
+    API -->|"Acquire 30s Lock"| Redis
+    API -->|"Insert Reservation"| Mongo
+    API -->|"Publish ReservationCreated"| Kafka
+
+    Kafka -->|"Consume Event"| Worker
+
+    Worker -->|"Idempotent Upsert"| Mongo
+    Worker -->|"Cache Reservation 24h"| Redis

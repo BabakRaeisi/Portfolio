@@ -1,0 +1,31 @@
+sequenceDiagram
+
+    participant Game as Unity Game
+    participant Recorder as Trial / Session Recorder
+    participant Uploader as DataUploader
+    participant API as Analytics API
+    participant DB as PostgreSQL
+
+    Game->>Recorder: Player completes trial
+
+    Recorder->>Recorder: Record result
+    Recorder->>Recorder: Add trial to session
+
+    Game->>Recorder: Session / day completed
+
+    Recorder->>Uploader: SessionUploadRequest
+
+    Uploader->>Uploader: Normalize payload
+    Uploader->>Uploader: Serialize JSON
+
+    Uploader->>API: POST /api/analytics/upload
+
+    alt Upload succeeds
+        API->>DB: Persist player/session/trials
+        DB-->>API: Saved
+        API-->>Uploader: 2xx Response
+        Uploader-->>Game: Upload successful
+    else Upload fails
+        API-->>Uploader: Error response
+        Uploader-->>Game: Upload failed
+    end

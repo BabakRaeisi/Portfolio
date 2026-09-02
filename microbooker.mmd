@@ -1,0 +1,30 @@
+flowchart LR
+    User[User Browser]
+    Frontend[React Frontend]
+    Auth[Auth API]
+    PostgreSQL[(PostgreSQL)]
+    ReservationAPI[Reservation API]
+    RedisLock[(Redis Lock)]
+    MongoDB[(MongoDB)]
+    Kafka[(Kafka)]
+    Worker[Storage Worker]
+    RedisCache[(Redis Cache)]
+
+    User --> Frontend
+
+    Frontend -->|Register and Login| Auth
+    Auth --> PostgreSQL
+    Auth -->|JWT Access Token| Frontend
+
+    Frontend -->|Reservation Request with JWT| ReservationAPI
+
+    ReservationAPI -->|Acquire Temporary Lock| RedisLock
+    ReservationAPI -->|Insert Reservation| MongoDB
+    ReservationAPI -->|Publish Reservation Created Event| Kafka
+
+    Kafka -->|Consume Event| Worker
+    Worker -->|Idempotent Upsert| MongoDB
+    Worker -->|Cache Reservation| RedisCache
+
+    Frontend -->|Load Existing Reservations| ReservationAPI
+    ReservationAPI --> MongoDB

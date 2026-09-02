@@ -1,0 +1,38 @@
+flowchart TD
+
+    UserA["User A<br/>Table 2 at 8:00 PM"]
+    UserB["User B<br/>Table 2 at 8:00 PM"]
+
+    Race["Both requests arrive<br/>at nearly the same time"]
+
+    RedisLock{"Redis Distributed Lock<br/>table + time slot"}
+
+    LockWinner["Request acquires lock"]
+    LockLoser["Second request cannot acquire lock"]
+
+    MongoIndex{"MongoDB Unique Index<br/>RestaurantId + TableId + TimeSlot"}
+
+    Stored["Reservation Stored"]
+    Duplicate["Duplicate Reservation Rejected"]
+
+    Accepted["202 Accepted"]
+    RedisConflict["409 Conflict"]
+    MongoConflict["409 Conflict"]
+
+    UserA --> Race
+    UserB --> Race
+
+    Race --> RedisLock
+
+    RedisLock -->|"Lock Acquired"| LockWinner
+    RedisLock -->|"Lock Already Exists"| LockLoser
+
+    LockLoser --> RedisConflict
+
+    LockWinner --> MongoIndex
+
+    MongoIndex -->|"Unique Combination"| Stored
+    MongoIndex -->|"Duplicate Combination"| Duplicate
+
+    Stored --> Accepted
+    Duplicate --> MongoConflict
